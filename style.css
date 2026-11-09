@@ -1,93 +1,259 @@
-/* Estilos generales */
+/* ==========================================================
+   Currículum — hoja de estilos
+   Mantiene los mismos selectores: main, #Nombre, #Exp_Aca,
+   #Exp_Pro. Añade estilos base para h2, h3, p, ul, li y a.
+   ========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap");
+
+/* ---------- Variables ---------- */
+:root {
+    --fondo: #e9edf3;
+    --hoja: #fbfcfe;
+    --tinta: #14213d;
+    --tinta-suave: #4a5772;
+    --linea: #d5dbe6;
+
+    --academico: #2f4fd8;
+    --academico-fondo: #eef1fd;
+    --profesional: #0b7a5a;
+    --profesional-fondo: #e9f6f1;
+
+    --fuente-titulo: "Fraunces", Georgia, "Times New Roman", serif;
+    --fuente-texto: "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+
+    --radio: 14px;
+    --sombra: 0 1px 2px rgba(20, 33, 61, 0.06),
+              0 18px 48px -12px rgba(20, 33, 61, 0.18);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fondo: #0d1322;
+        --hoja: #141c30;
+        --tinta: #e8ecf6;
+        --tinta-suave: #a3aec6;
+        --linea: #26314d;
+
+        --academico: #8da2ff;
+        --academico-fondo: #1a2447;
+        --profesional: #4fd1a5;
+        --profesional-fondo: #123329;
+
+        --sombra: 0 1px 2px rgba(0, 0, 0, 0.4),
+                  0 18px 48px -12px rgba(0, 0, 0, 0.6);
+    }
+}
+
+/* ---------- Base ---------- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #f1f5f9;
-    color: #1e293b;
-    line-height: 1.6;
-    padding: 40px 20px;
+    font-family: var(--fuente-texto);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--tinta);
+    background: var(--fondo);
+    padding: clamp(20px, 5vw, 64px) clamp(12px, 3vw, 24px);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-/* Contenedor principal */
+/* ---------- Hoja principal ---------- */
 main {
-    max-width: 850px;
+    max-width: 860px;
     margin: 0 auto;
-    padding: 40px;
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    padding: clamp(28px, 6vw, 64px);
+    background: var(--hoja);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
 }
 
-/* Nombre */
+/* ---------- Nombre ---------- */
 #Nombre {
-    font-size: 2.4rem;
-    color: #0f172a;
-    margin-bottom: 35px;
-    padding-bottom: 18px;
-    border-bottom: 4px solid #2563eb;
-    letter-spacing: -1px;
+    font-family: var(--fuente-titulo);
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--tinta);
+    margin-bottom: clamp(28px, 5vw, 48px);
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--linea);
+    position: relative;
 }
 
-/* Experiencia académica */
-#Exp_Aca {
-    background: #eff6ff;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-left: 5px solid #2563eb;
-    border-radius: 8px;
-    transition: transform 0.2s ease,
-                box-shadow 0.2s ease;
+/* Trazo de color bajo el nombre */
+#Nombre::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 96px;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--academico) 50%, var(--profesional) 50%);
 }
 
-#Exp_Aca h3 {
-    color: #1d4ed8;
-    font-size: 1.3rem;
+/* ---------- Tipografía interna ---------- */
+h2 {
+    font-family: var(--fuente-titulo);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
 }
 
-/* Experiencia profesional */
-#Exp_Pro {
-    background: #f0fdf4;
-    padding: 25px;
+h3 {
+    font-family: var(--fuente-titulo);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
     margin-bottom: 10px;
-    border-left: 5px solid #16a34a;
-    border-radius: 8px;
-    transition: transform 0.2s ease,
-                box-shadow 0.2s ease;
 }
 
+p {
+    color: var(--tinta-suave);
+    max-width: 68ch;
+}
+
+p + p {
+    margin-top: 10px;
+}
+
+ul {
+    margin: 10px 0 0 1.1em;
+    color: var(--tinta-suave);
+}
+
+li {
+    padding-left: 4px;
+    margin-bottom: 6px;
+}
+
+a {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 0.15s ease;
+}
+
+/* ---------- Bloques de experiencia ---------- */
+#Exp_Aca,
+#Exp_Pro {
+    --acento: var(--academico);
+    --acento-fondo: var(--academico-fondo);
+
+    position: relative;
+    padding: 26px 28px 26px 32px;
+    margin-bottom: 22px;
+    background: var(--acento-fondo);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#Exp_Pro {
+    --acento: var(--profesional);
+    --acento-fondo: var(--profesional-fondo);
+    margin-bottom: 0;
+}
+
+/* Barra lateral de color: distingue formación de trabajo */
+#Exp_Aca::before,
+#Exp_Pro::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 6px;
+    background: var(--acento);
+}
+
+#Exp_Aca h3,
 #Exp_Pro h3 {
-    color: #15803d;
-    font-size: 1.3rem;
+    color: var(--acento);
 }
 
-/* Efectos al pasar el ratón */
+#Exp_Aca li::marker,
+#Exp_Pro li::marker {
+    color: var(--acento);
+}
+
+#Exp_Aca a:hover,
+#Exp_Pro a:hover {
+    color: var(--acento);
+}
+
+/* ---------- Interacción ---------- */
 #Exp_Aca:hover,
 #Exp_Pro:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -10px rgba(20, 33, 61, 0.25);
 }
 
-/* Adaptación a móviles */
+:focus-visible {
+    outline: 3px solid var(--academico);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+
+    #Exp_Aca:hover,
+    #Exp_Pro:hover {
+        transform: none;
+    }
+}
+
+/* ---------- Móvil ---------- */
 @media (max-width: 600px) {
-    body {
-        padding: 20px 12px;
-    }
-
     main {
-        padding: 25px 20px;
-    }
-
-    #Nombre {
-        font-size: 1.8rem;
+        border-radius: 10px;
     }
 
     #Exp_Aca,
     #Exp_Pro {
-        padding: 18px;
+        padding: 20px 18px 20px 24px;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* ---------- Impresión (para sacar el CV en PDF o papel) ---------- */
+@media print {
+    body {
+        background: #fff;
+        padding: 0;
+    }
+
+    main {
+        max-width: none;
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+        background: #fff;
+    }
+
+    #Exp_Aca,
+    #Exp_Pro {
+        break-inside: avoid;
+        box-shadow: none;
+        transform: none;
     }
 }
